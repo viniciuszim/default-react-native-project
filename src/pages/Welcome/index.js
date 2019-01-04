@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  View, Text, StatusBar, ActivityIndicator,
+  View, Text, StatusBar, ActivityIndicator, SafeAreaView,
 } from 'react-native';
 
 import styles from './styles';
@@ -22,7 +22,7 @@ export default class Welcome extends Component {
   render() {
     const { loading, error } = this.state;
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <StatusBar barStyle="light-content" />
 
         <Text style={styles.title}>Bem-vindo</Text>
@@ -30,7 +30,7 @@ export default class Welcome extends Component {
         {error && <Text style={styles.error}>Error.</Text>}
 
         {loading && <ActivityIndicator size="small" color="#FFF" />}
-      </View>
+      </SafeAreaView>
     );
   }
 }

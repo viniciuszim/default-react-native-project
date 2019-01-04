@@ -54,9 +54,16 @@ init()
 		yarn add react-native-status-bar-height
 		yarn add react-native-vector-icons
 		react-native link react-native-vector-icons
-		yarn add react-navigation react-native-gesture-handler
+		yarn add react-navigation
+		yarn add react-native-gesture-handler
 		react-native link react-native-gesture-handler
 		yarn add axios
+		yarn add redux
+		yarn add redux-saga
+		yarn add react-redux
+		yarn add reactotron-redux
+		yarn add reactotron-redux-saga
+		yarn add color
 
 		######
 		# Copying files
