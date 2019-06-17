@@ -1,40 +1,95 @@
-import React, { Component } from 'react';
-import { withNavigation } from 'react-navigation';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  View, Text, TouchableOpacity, StatusBar, AsyncStorage,
-} from 'react-native';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Image from 'react-native-remote-svg';
 
 import styles from './styles';
 
-class Header extends Component {
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    navigation: PropTypes.shape({
-      navigate: PropTypes.func,
-    }).isRequired,
-  };
+import IconBadge from 'react-native-icon-badge';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-  doSomething = async () => {};
+// import LogoInterna from '~/../public/images/logo-interna.png';
 
-  render() {
-    const { title } = this.props;
+const MenuLeftIcon = ({ navigation }) => (
+  <TouchableOpacity onPress={() => navigation.openDrawer()}>
+    <Icon
+      name="bars"
+      size={styles.iconLeft.fontSize}
+      color={styles.iconLeft.color}
+    />
+  </TouchableOpacity>
+);
 
-    return (
-      <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+const MenuRightIcon = ({ navigation }) => (
+  <IconBadge
+    MainElement={(
+      <Icon
+        onPress={() => {}}
+        name="user"
+        size={styles.iconLeft.fontSize}
+        color={styles.iconLeft.color}
+      />
+)}
+    BadgeElement={<Text style={styles.textBadge}>99</Text>}
+    IconBadgeStyle={styles.iconBadge}
+    Hidden={99 === 0}
+  />
+);
 
-        <View style={styles.left} />
-        <Text style={styles.title}>{title}</Text>
-        <TouchableOpacity onPress={this.doSomething}>
-          <Icon name="exchange" size={16} style={styles.icon} />
-        </TouchableOpacity>
-      </View>
-    );
-  }
-}
+const ViewWithLogo = () => (
+  <View style={styles.headerCenterContainer}>
+    {/* <Image
+      source={LogoInterna}
+      style={styles.imageLogo}
+    /> */}
+  </View>
+);
 
-export default withNavigation(Header);
+const ViewWithLogoAndTitle = ({ title }) => (
+  <View style={styles.headerCenterContainer}>
+    {/* <Image
+      source={LogoInterna}
+      style={styles.imageLogoWithTitle}
+    /> */}
+    <Text style={styles.textTitle}>{title}</Text>
+  </View>
+);
+
+const headerWithLogo = (props) => {
+  const { navigation } = props;
+  const title = navigation.getParam('titleParam');
+  return ({
+    headerTitle: (title !== undefined && title !== null && title !== '') ? (
+      <ViewWithLogoAndTitle title={title} />
+    ) : (
+      <ViewWithLogo />
+    ),
+    headerTintColor: 'white',
+    headerStyle: styles.header,
+    headerLeft: <MenuLeftIcon {...props} />,
+    headerLeftContainerStyle: styles.headerLeftContainer,
+    // headerRight: <MenuRightIcon {...props} />,
+    headerRightContainerStyle: styles.headerRightContainer,
+    headerBackTitle: null,
+  });
+};
+
+const headerWithBackButton = (props) => {
+  const { navigation } = props;
+  const title = navigation.getParam('titleParam');
+  return ({
+    headerTitle: (title !== undefined && title !== null && title !== '') ? (
+      <ViewWithLogoAndTitle title={title} />
+    ) : (
+      <ViewWithLogo />
+    ),
+    headerTintColor: 'white',
+    headerStyle: styles.header,
+  });
+};
+
+export default {
+  headerWithLogo,
+  headerWithBackButton,
+};

@@ -1,28 +1,39 @@
 import { StyleSheet } from 'react-native';
 import { colors, metrics } from '~/styles';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.white,
-    height: 54 + getStatusBarHeight(),
-    paddingTop: getStatusBarHeight(),
-    borderBottomWidth: 1,
-    borderBottomColor: colors.light,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  header: {
+    backgroundColor: colors.primary,
+    height: 45,
+  },
+
+  headerLeftContainer: {
+    marginLeft: metrics.baseMargin + 5,
+  },
+  iconLeft: {
+    fontSize: 24,
+    color: colors.white,
+  },
+
+  headerCenterContainer: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: metrics.basePadding,
   },
-
-  title: {
-    fontSize: 16,
+  textTitle: {
+    color: colors.white,
     fontWeight: 'bold',
-    color: colors.darker,
+    fontSize: 18,
   },
 
-  icon: {
-    color: colors.darker,
+  headerRightContainer: {
+    marginRight: metrics.baseMargin + 5,
+  },
+  iconRight: {
+    fontSize: 24,
+    color: colors.white,
   },
 });
 

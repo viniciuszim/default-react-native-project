@@ -1,26 +1,28 @@
 {
-    "parser": "babel-eslint",
-    "extends": ["airbnb", "plugin:react-native/all"],
-    "plugins": ["react-native", "jsx-a11y", "import"],
-    "env": {
-        "jest": true
-    },
-    "rules": {
-        "react/jsx-filename-extension": [
-            "error",
-            {
-                "extensions": [".js", ".jsx"]
-            }
-        ],
-        "import/prefer-default-export": "off",
-        "global-require": "off"
-    },
-    "globals": {
-        "__DEV__": true
-    },
-    "settings": {
-        "import/resolver": {
-            "babel-plugin-root-import": {}
-        }
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "plugin:react-native/all"],
+  "plugins": ["react-native", "jsx-a11y", "import"],
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/sort-comp": "off",
+    "react-native/sort-styles": "off",
+    "import/prefer-default-export": "off",
+    "global-require": "off"
+  },
+  "globals": {
+    "__DEV__": true
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-plugin-root-import": {}
     }
+  }
 }

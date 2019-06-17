@@ -1,10 +1,13 @@
-import { all, takeLatest } from 'redux-saga/effects';
+import { all, spawn, takeLatest } from 'redux-saga/effects';
 
-// import { Types as DuckTypes } from '~/store/ducks/duck';
-// import { sagaRequest } from './saga';
+import { startWatchingNetworkConnectivity } from './offline';
+
+import { Types as FavoriteTypes } from '~/store/ducks/favorites';
+import { addFavoriteRequest } from './favorites';
 
 export default function* rootSaga() {
   return yield all([
-    // takeLatest(Types.TYPE, sagaRequest)
+    spawn(startWatchingNetworkConnectivity),
+  	takeLatest(FavoriteTypes.ADD_REQUEST, addFavoriteRequest)
   ]);
 }
